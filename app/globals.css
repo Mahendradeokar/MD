@@ -1,113 +1,93 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
-@theme {
-  --font-family-sans: 'Inter', sans-serif;
+@custom-variant dark (&:is(.dark *));
+
+/* Tailwind v4 Design System */
+@theme inline {
+  /* Radii */
+  --radius: 0.625rem;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Colors (semantic) */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  /* Light theme tokens (hsl) */
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(0 0% 15%);
+  --muted: hsl(0 0% 97%);
+  --muted-foreground: hsl(0 0% 56%);
+  --accent: hsl(0 0% 97%);
+  --accent-foreground: hsl(0 0% 20%);
+  --border: hsl(0 0% 92%);
+  --ring: hsl(0 0% 71%);
+
+  /* Spacing scale (fluid for larger steps) */
+  --space-0: 0rem;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: clamp(1rem, 1.8vw, 1.25rem);
+  --space-6: clamp(1.25rem, 2.2vw, 1.5rem);
+  --space-8: clamp(1.5rem, 3vw, 2rem);
+  --space-10: clamp(2rem, 4vw, 2.5rem);
+  --space-12: clamp(2.5rem, 5vw, 3rem);
+
+  /* Typography scale */
+  /* Body text stays consistent; headings/subheadings are fluid */
+  --text-xs: 0.8125rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem; /* body */
+  --text-lg: 1.0625rem;
+  --text-xl: clamp(1.125rem, 1.6vw, 1.25rem); /* subheading */
+  --text-2xl: clamp(1.25rem, 2.4vw, 1.5rem);
+  --text-3xl: clamp(1.5rem, 3.2vw, 1.875rem);
+  --text-4xl: clamp(1.75rem, 4vw, 2.25rem); /* heading */
 }
 
-:root {
-  --sh-class: #7aa2f7;
-  --sh-sign: #89ddff;
-  --sh-string: #9ece6a;
-  --sh-keyword: #bb9af7;
-  --sh-comment: #565f89;
-  --sh-jsxliterals: #7aa2f7;
-  --sh-property: #73daca;
-  --sh-entity: #e0af68;
+.dark {
+  --background: hsl(0 0% 15%);
+  --foreground: hsl(0 0% 98.5%);
+  --muted: hsl(0 0% 27%);
+  --muted-foreground: hsl(0 0% 71%);
+  --accent: hsl(0 0% 27%);
+  --accent-foreground: hsl(0 0% 98.5%);
+  --border: hsl(0 0% 100% / 10%);
+  --ring: hsl(0 0% 56%);
 }
 
-html {
-  min-width: 360px;
-  scrollbar-gutter: stable;
-}
-
-body {
-  text-rendering: optimizeLegibility;
-}
-
-h1,
-h2,
-h3,
-h4 {
-  text-wrap: balance;
-}
-
-pre {
-  background-color: #16161e;
-  border-radius: 0.5rem;
-  overflow-x: auto;
-  padding: 1rem;
-  margin: 1.5rem 0;
-  line-height: 1;
-}
-
-pre::-webkit-scrollbar {
-  display: none;
-}
-
-pre {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-code {
-  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
-  font-size: 14px;
-  padding: 0.2em 0.4em;
-  border-radius: 0.3em;
-  background-color: var(--color-gray-100);
-}
-
-pre code {
-  background-color: transparent;
-  padding: 0;
-  border: none;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-pre code > span .sh__token--identifier {
-  color: white !important;
-}
-
-code:not(pre code) span {
-  font-weight: 500;
-  color: black !important;
-}
-
-@media (prefers-color-scheme: dark) {
-  code {
-    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
-    font-size: 14px;
-    padding: 0.2em 0.4em;
-    border-radius: 0.3em;
-    background-color: var(--color-zinc-800);
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-
-  code:not(pre code) span {
-    color: var(--color-zinc-100) !important;
+  html {
+    min-width: 360px;
+    scrollbar-gutter: stable;
   }
-}
-
-pre code span {
-  font-weight: 500;
-}
-
-hr {
-  color: var(--color-gray-200);
-}
-
-/* Remove Safari input shadow on mobile */
-input[type='text'],
-input[type='email'] {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-table {
-  display: block;
-  max-width: fit-content;
-  overflow-x: auto;
-  white-space: nowrap;
-  text-align: left;
+  body {
+    @apply bg-background text-foreground text-base;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+    padding: 0px;
+    margin: 0px;
+  }
+  a {
+    @apply transition-colors duration-200 ease-out;
+  }
 }
