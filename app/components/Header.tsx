@@ -1,13 +1,5 @@
 import { Button } from "@/app/components/ui/Button";
-
-type SocialLink = { label: string; href: string };
-
-const socialLinks: SocialLink[] = [
-  { label: "GitHub", href: "https://github.com/mahendradeokar" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/mahendradevkar" },
-  { label: "X", href: "https://x.com/mahendra__devkar" },
-  { label: "Email", href: "mailto:deokarmahendra424@gmail.com" },
-];
+import { socialLinks } from "../constants/socials";
 
 export function Header() {
   return (

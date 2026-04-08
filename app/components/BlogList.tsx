@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { Button } from "./ui/Button";
+import { getBlogEntries } from "@/app/lib/blogs";
 
 type BlogEntry = {
   title: string;
@@ -35,16 +36,7 @@ function extractTitleFromMdx(filePath: string): string | null {
 }
 
 export function BlogList() {
-  const postsDir = path.join(process.cwd(), "app", "n");
-  const folders = readDirectorySafe(postsDir);
-
-  const entries: BlogEntry[] = folders.map((folder) => {
-    const pagePath = path.join(postsDir, folder, "page.mdx");
-    const title = extractTitleFromMdx(pagePath) ?? `Post ${folder}`;
-    return { title, href: `/n/${folder}` };
-  });
-
-  const sorted = entries.sort((a, b) => a.title.localeCompare(b.title));
+  const sorted = getBlogEntries();
 
   return (
     <section aria-labelledby="blogs-heading" className="w-full">

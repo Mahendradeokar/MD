@@ -20,15 +20,21 @@ const projects: Project[] = [
     name: "AI Invoice Customizer (Invox)",
     description:
       "AI-powered invoice customization with chat-driven editing, templates, live preview; exports Handlebars/HTML/JSON.",
-    href: "https://github.com/mahendradeokar/invox",
+    href: "https://github.com/Mahendradeokar/invox",
     meta: "Next.js · Zustand · shadcn/ui · Tiptap · Node/Express · MongoDB",
   },
   {
     name: "Form Builder",
     description:
       "Drag-and-drop form designer with real-time preview, extensible controls, and robust validation.",
-    href: "https://github.com/mahendradeokar/form-builder",
+    href: "https://github.com/Mahendradeokar/form_builder",
     meta: "Next.js · Redux Toolkit · Auth Middleware · Axios",
+  },
+  {
+    name: "Area Browser",
+    description: "Landing page",
+    href: "https://github.com/Mahendradeokar/area-browser-site",
+    meta: "Next.js · Tailwind",
   },
 ];
 
