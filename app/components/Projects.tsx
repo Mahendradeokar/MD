@@ -44,27 +44,23 @@ export function Projects() {
       <h2 id="projects-heading" className="m-0 mt-4 p-0 text-muted-foreground">
         Projects
       </h2>
-      <ul
-        className="
-          m-0 mt-3 p-0 space-y-1 
-        "
-      >
+      <ul className="m-0 mt-3 grid min-w-0 gap-4 p-0">
         {projects.map((p) => (
           <li key={p.name} className="list-none">
-            <Card className="h-full flex flex-col border-none max-w-[50ch]">
+            <Card className="flex h-full max-w-[58ch] flex-col border-none">
               <CardContent className="flex flex-col gap-2 pb-0 px-0">
-                <CardTitle>
+                <CardTitle className="text-[clamp(1rem,3.5vw,1.125rem)]">
                   <a
                     href={p.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 underline underline-offset-2 hover:text-primary transition"
+                    className="inline-flex min-w-0 items-center gap-1 break-words underline underline-offset-2 transition hover:text-primary"
                     aria-label={`${p.name} (opens in new tab)`}
                   >
-                    {p.name}
+                    <span className="min-w-0">{p.name}</span>
                     <ExternalLink
                       size={16}
-                      className="inline-block align-middle text-muted-foreground"
+                      className="inline-block shrink-0 align-middle text-muted-foreground"
                       aria-label="Opens in new tab"
                     />
                   </a>
@@ -74,7 +70,7 @@ export function Projects() {
                 </CardDescription>
               </CardContent>
               <CardFooter className="px-0">
-                <div className="text-xs text-muted-foreground self-center pointer-events-none select-text">
+                <div className="min-w-0 text-xs leading-relaxed text-muted-foreground self-center pointer-events-none select-text">
                   {p.meta}
                 </div>
               </CardFooter>

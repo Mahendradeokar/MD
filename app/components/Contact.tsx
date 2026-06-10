@@ -10,7 +10,7 @@ export function Contact() {
       <p className="m-0 mt-2 text-sm text-muted-foreground">
         Have a question or feedback? Feel free to reach out.
       </p>
-      <div className="mt-3 flex items-center justify-between gap-4">
+      <div className="mt-3 flex flex-wrap items-center justify-between gap-4">
         <div className="flex flex-wrap gap-4 text-sm">
           <Button asChild className="p-0.5">
             <a href="mailto:deokarmahendra424@gmail.com">Email</a>

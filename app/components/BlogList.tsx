@@ -43,16 +43,16 @@ export function BlogList() {
       <h2 id="blogs-heading" className="m-0 mt-4 p-0 text-muted-foreground">
         Blogs
       </h2>
-      <div className="mt-2 grid gap-1">
+      <div className="mt-2 grid min-w-0 gap-1">
         {sorted.map((post) => (
           <Button
             key={post.href}
             variant="ghost"
             size="sm"
             asChild
-            className="justify-start -mx-3 py-1 text-left hover:bg-muted rounded-sm text-lg leading-tight tracking-tight"
+            className="h-auto min-h-8 w-full min-w-0 justify-start whitespace-normal rounded-sm px-0 py-1 text-left text-[clamp(1rem,3.5vw,1.125rem)] leading-tight tracking-tight hover:bg-muted sm:-mx-3 sm:w-[calc(100%+1.5rem)] sm:px-3"
           >
-            <a href={post.href}>
+            <a href={post.href} className="block min-w-0 break-words">
               {post.title}
               ++{" "}
             </a>

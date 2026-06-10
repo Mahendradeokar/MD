@@ -69,10 +69,18 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    box-sizing: border-box;
+  }
+  *::before,
+  *::after {
+    box-sizing: border-box;
   }
   html {
-    min-width: 360px;
     scrollbar-gutter: stable;
+  }
+  html,
+  body {
+    overflow-x: clip;
   }
   body {
     @apply bg-background text-foreground text-base;
@@ -89,5 +97,6 @@
   }
   a {
     @apply transition-colors duration-200 ease-out;
+    overflow-wrap: anywhere;
   }
 }
