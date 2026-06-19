@@ -1,5 +1,4 @@
 import { ExternalLink } from "lucide-react";
-import { Github } from "../icons";
 import {
   Card,
   CardTitle,
@@ -16,6 +15,20 @@ type Project = {
 };
 
 const projects: Project[] = [
+  {
+    name: "Rocket.new",
+    description:
+      "Prompt-to-Code and Figma-to-Code app builder by Dhiwise. I worked on real-time build streaming that powered 90%+ of frontend-backend communication, Figma-to-Code workflows adopted by 40%+ of users, React Native preview support, and device-frame previews for generated apps.",
+    href: "https://www.dhiwise.com/",
+    meta: "Dhiwise.com · React · SSE · Figma-to-Code · React Native previews",
+  },
+  {
+    name: "Vinddy",
+    description:
+      "Store creation platform where I automated self-serve store setup by integrating Firebase, Google Cloud, Vercel, and GitHub APIs, reducing manual setup work by 80%.",
+    href: "https://www.vinddy.com/",
+    meta: "Firebase - Google Cloud - Vercel - GitHub APIs - Automation",
+  },
   {
     name: "AI Invoice Customizer (Invox)",
     description:
