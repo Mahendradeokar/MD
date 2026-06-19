@@ -1,56 +1,70 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+
+type HandAngles = { hours: number; minutes: number; seconds: number };
+
+function getHandAngles(date: Date): HandAngles {
+  const hours = date.getHours() % 12;
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
+  const milliseconds = date.getMilliseconds();
+  const totalSeconds = seconds + milliseconds / 1000;
+  const totalMinutes = minutes + totalSeconds / 60;
+  const totalHours = hours + totalMinutes / 60;
+
+  return {
+    hours: totalHours * 30,
+    minutes: totalMinutes * 6,
+    seconds: totalSeconds * 6,
+  };
+}
+
+function setHandAngle(element: HTMLDivElement | null, deg: number) {
+  if (!element) return;
+  element.style.transform = `translateX(-50%) rotate(${deg}deg)`;
+}
 
 export default function AnalogClock() {
-  const ref = useRef<HTMLTimeElement>(null);
+  const hourRef = useRef<HTMLDivElement>(null);
+  const minuteRef = useRef<HTMLDivElement>(null);
+  const secondRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const update = () => {
-      const now = new Date();
-      const el = ref.current;
-      if (!el) return;
-      el.style.setProperty("--time-hours", now.getHours().toString());
-      el.style.setProperty("--time-minutes", now.getMinutes().toString());
-      el.style.setProperty("--time-seconds", now.getSeconds().toString());
+    let frame = 0;
+
+    const tick = () => {
+      const angles = getHandAngles(new Date());
+
+      setHandAngle(hourRef.current, angles.hours);
+      setHandAngle(minuteRef.current, angles.minutes);
+      setHandAngle(secondRef.current, angles.seconds);
+
+      frame = requestAnimationFrame(tick);
     };
-    update();
-    const interval = setInterval(update, 1000);
-    return () => clearInterval(interval);
+
+    tick();
+
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   return (
-    <button data-state="closed" className="cursor-default">
-      <time
-        ref={ref}
-        className="relative block size-8 rotate-180 rounded-full border border-neutral-300 dark:border-neutral-600 antialiased"
-      >
+    <div className="cursor-default" aria-hidden>
+      <time className="relative block size-8 rounded-full border border-neutral-300 dark:border-neutral-600 antialiased">
         <div className="absolute left-1/2 top-1/2 size-px -translate-x-1/2 -translate-y-1/2 bg-neutral-400 dark:bg-neutral-500" />
         <div
-          className="absolute left-1/2 top-1/2 h-1/4 w-px rounded-full bg-neutral-600 dark:bg-neutral-400"
-          style={{
-            transformOrigin: "0 0",
-            transform:
-              "rotate(calc((var(--time-hours) * 30deg) + ((var(--time-minutes) / 2) * 1deg))) translate(-50%, 0%)",
-          }}
+          ref={hourRef}
+          className="absolute bottom-1/2 left-1/2 h-1/4 w-px origin-bottom rounded-full bg-neutral-600 dark:bg-neutral-400"
         />
         <div
-          className="absolute left-1/2 top-1/2 h-2/5 w-px rounded-full bg-neutral-600 dark:bg-neutral-400"
-          style={{
-            transformOrigin: "0 0",
-            transform:
-              "rotate(calc(var(--time-minutes) * 6deg)) translate(-50%, 0%)",
-          }}
+          ref={minuteRef}
+          className="absolute bottom-1/2 left-1/2 h-2/5 w-px origin-bottom rounded-full bg-neutral-600 dark:bg-neutral-400"
         />
         <div
-          className="absolute left-1/2 top-1/2 h-2/5 w-[0.5px] rounded-full bg-neutral-500 dark:bg-neutral-400"
-          style={{
-            transformOrigin: "0 0",
-            transform:
-              "rotate(calc(var(--time-seconds) * 6deg)) translate(-50%, 0%)",
-          }}
+          ref={secondRef}
+          className="absolute bottom-1/2 left-1/2 h-2/5 w-[0.5px] origin-bottom rounded-full bg-neutral-500 dark:bg-neutral-400"
         />
       </time>
-    </button>
+    </div>
   );
 }

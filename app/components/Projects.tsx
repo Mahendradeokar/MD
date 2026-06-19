@@ -41,7 +41,7 @@ const projects: Project[] = [
 export function Projects() {
   return (
     <section aria-labelledby="projects-heading" className="w-full">
-      <h2 id="projects-heading" className="m-0 mt-4 p-0 text-muted-foreground">
+      <h2 id="projects-heading" className="m-0 mt-2 p-0 text-muted-foreground sm:mt-4">
         Projects
       </h2>
       <ul className="m-0 mt-3 grid min-w-0 gap-4 p-0">

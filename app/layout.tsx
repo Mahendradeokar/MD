@@ -26,7 +26,7 @@ export default function RootLayout({
     <html lang="en" className={`dark ${geist.className}`}>
       <body className="antialiased tracking-tight">
         <div className="min-h-screen dark:bg-zinc-950 bg-white text-gray-900 dark:text-zinc-200">
-          <main className="mx-auto flex min-h-screen w-full max-w-[min(42rem,100vw)] flex-col justify-center gap-[clamp(1.25rem,4vw,1.75rem)] px-[clamp(1rem,5vw,2rem)] py-[clamp(2rem,8vw,3.5rem)]">
+          <main className="mx-auto flex min-h-screen w-full max-w-[min(42rem,100vw)] flex-col justify-start gap-6 px-5 py-8 sm:justify-center sm:gap-[clamp(1rem,3.5vw,1.75rem)] sm:px-[clamp(1rem,5vw,2rem)] sm:py-[clamp(1.5rem,7vw,3.5rem)]">
             {children}
           </main>
           <Analytics />
