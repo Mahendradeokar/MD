@@ -42,6 +42,12 @@ function extractStatusFromMdx(filePath: string): string | null {
   }
 }
 
+function getStatusPriority(status?: string): number {
+  if (status?.toLowerCase() === "working on") return 0;
+  if (status?.toLowerCase() === "pending") return 1;
+  return 2;
+}
+
 export function getBlogEntries(): BlogEntry[] {
   const postsDir = path.join(process.cwd(), "app", "n");
   const folders = readDirectorySafe(postsDir);
@@ -52,6 +58,9 @@ export function getBlogEntries(): BlogEntry[] {
     return { title, href: `/n/${folder}`, status };
   });
   return entries.sort((a, b) => {
+    const statusOrder = getStatusPriority(a.status) - getStatusPriority(b.status);
+    if (statusOrder !== 0) return statusOrder;
+
     const aId = Number(a.href.split("/").at(-1));
     const bId = Number(b.href.split("/").at(-1));
 

@@ -3,6 +3,42 @@ import { About } from "@/app/components/About";
 import { BlogList } from "@/app/components/BlogList";
 import { Projects } from "@/app/components/Projects";
 import { Contact } from "@/app/components/Contact";
+import { socialLinks } from "@/app/constants/socials";
+
+export const metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
+
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      name: "Mahendra Devkar",
+      url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://mahendradeokar.vercel.app",
+      jobTitle: "Frontend Software Engineer",
+      address: {
+        "@type": "PostalAddress",
+        addressRegion: "Gujarat",
+        addressCountry: "IN",
+      },
+      knowsAbout: [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Design to Code",
+        "Real-time UI",
+        "Developer Tooling",
+      ],
+      sameAs: socialLinks
+        .filter((link) => link.href.startsWith("https://"))
+        .map((link) => link.href),
+    }),
+  }}
+/>
 
 <Header />
 <About />

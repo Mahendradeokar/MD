@@ -8,8 +8,7 @@ function getHandAngles(date: Date): HandAngles {
   const hours = date.getHours() % 12;
   const minutes = date.getMinutes();
   const seconds = date.getSeconds();
-  const milliseconds = date.getMilliseconds();
-  const totalSeconds = seconds + milliseconds / 1000;
+  const totalSeconds = seconds;
   const totalMinutes = minutes + totalSeconds / 60;
   const totalHours = hours + totalMinutes / 60;
 

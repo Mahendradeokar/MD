@@ -17,7 +17,7 @@ function SocialIcon({ label }: { label: string }) {
 export function Header() {
   return (
     <header className="grid w-full min-w-0 grid-cols-[minmax(0,1fr)_auto] grid-rows-[auto_auto] gap-x-3 gap-y-1.5 sm:gap-y-1">
-      <h1 className="col-span-2 m-0 text-[clamp(1.375rem,5.5vw,2.25rem)] font-medium leading-[1.05] tracking-tight sm:col-span-1">
+      <h1 className="col-span-2 row-start-1 m-0 text-[clamp(1.375rem,5.5vw,2.25rem)] font-medium leading-[1.05] tracking-tight sm:col-span-1">
         Mahendra Devkar
       </h1>
       <p className="col-start-1 row-start-2 m-0 ml-[1px] self-center text-sm text-muted-foreground">

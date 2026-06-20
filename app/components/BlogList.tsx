@@ -13,7 +13,9 @@ export function BlogList() {
       </h2>
       <div className="mt-2 grid min-w-0 gap-2.5 sm:gap-1">
         {sorted.map((post) => {
-          const isWorkingOn = post.status?.toLowerCase() === "working on";
+          const normalizedStatus = post.status?.toLowerCase();
+          const isDisabled =
+            normalizedStatus === "working on" || normalizedStatus === "pending";
           const content = (
             <>
               <span className="min-w-0 break-words">{post.title}</span>
@@ -25,12 +27,12 @@ export function BlogList() {
             </>
           );
 
-          if (isWorkingOn) {
+          if (isDisabled) {
             return (
               <div
                 key={post.href}
                 aria-disabled="true"
-                className={`${rowClassName} h-auto min-h-8 w-full cursor-not-allowed select-none rounded-sm px-0 py-0.5 text-left text-[clamp(0.875rem,3.2vw,1.0625rem)] font-medium leading-tight tracking-tight text-foreground sm:-mx-3 sm:w-[calc(100%+1.5rem)] sm:px-3 sm:py-1 sm:text-[clamp(1rem,3.5vw,1.125rem)]`}
+                className={`${rowClassName} h-auto min-h-8 w-full cursor-not-allowed select-none rounded-sm px-0 py-0.5 text-left text-[clamp(0.75rem,2.8vw,0.9375rem)] font-medium leading-tight tracking-tight text-foreground sm:-mx-3 sm:w-[calc(100%+1.5rem)] sm:px-3 sm:py-1 sm:text-[clamp(0.875rem,2.6vw,1rem)]`}
               >
                 {content}
               </div>
@@ -43,7 +45,7 @@ export function BlogList() {
               variant="ghost"
               size="sm"
               asChild
-              className="h-auto min-h-8 w-full min-w-0 justify-start whitespace-normal rounded-sm px-0 py-0.5 text-left text-[clamp(0.875rem,3.2vw,1.0625rem)] leading-tight tracking-tight hover:bg-muted sm:-mx-3 sm:w-[calc(100%+1.5rem)] sm:px-3 sm:py-1 sm:text-[clamp(1rem,3.5vw,1.125rem)]"
+              className="h-auto min-h-8 w-full min-w-0 justify-start whitespace-normal rounded-sm px-0 py-0.5 text-left text-[clamp(0.75rem,2.8vw,0.9375rem)] leading-tight tracking-tight hover:bg-muted sm:-mx-3 sm:w-[calc(100%+1.5rem)] sm:px-3 sm:py-1 sm:text-[clamp(0.875rem,2.6vw,1rem)]"
             >
               <a href={post.href} className={rowClassName}>
                 {content}

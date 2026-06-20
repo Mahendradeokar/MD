@@ -19,7 +19,7 @@ function SocialIcon({ label }: { label: string }) {
 
 export function Contact() {
   return (
-    <footer aria-labelledby="contact-heading" className="w-full">
+    <footer aria-labelledby="contact-heading" className="w-full pb-[12vh] sm:pb-[16vh]">
       <h2 id="contact-heading" className="m-0 mt-3 p-0 text-md font-medium">
         Contact
       </h2>

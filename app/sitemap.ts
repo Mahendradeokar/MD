@@ -1,7 +1,10 @@
 import { promises as fs } from 'fs';
+import type { MetadataRoute } from 'next';
 import path from 'path';
 
-const SITE_URL = 'https://next-mdx-blog.vercel.app';
+const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://mahendradeokar.vercel.app'
+).replace(/\/$/, '');
 
 async function getNoteSlugs(dir: string) {
   const entries = await fs.readdir(dir, {
@@ -20,7 +23,7 @@ async function getNoteSlugs(dir: string) {
     .map((slug) => slug.replace(/\\/g, '/'));
 }
 
-export default async function sitemap() {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const notesDirectory = path.join(process.cwd(), 'app', 'n');
   const slugs = await getNoteSlugs(notesDirectory);
 
@@ -29,7 +32,7 @@ export default async function sitemap() {
     lastModified: new Date().toISOString()
   }));
 
-  const routes = ['', '/work'].map((route) => ({
+  const routes = [''].map((route) => ({
     url: `${SITE_URL}${route}`,
     lastModified: new Date().toISOString()
   }));

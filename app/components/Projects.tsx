@@ -33,7 +33,7 @@ const projects: Project[] = [
     name: "AI Invoice Customizer (Invox)",
     description:
       "AI-powered invoice customization with chat-driven editing, templates, live preview; exports Handlebars/HTML/JSON.",
-    href: "https://github.com/Mahendradeokar/invox",
+    href: "https://invox-ai.vercel.app/",
     meta: "Next.js · Zustand · shadcn/ui · Tiptap · Node/Express · MongoDB",
   },
   {
@@ -46,7 +46,7 @@ const projects: Project[] = [
   {
     name: "Area Browser",
     description: "Landing page",
-    href: "https://github.com/Mahendradeokar/area-browser-site",
+    href: "https://area-browser-site.vercel.app/",
     meta: "Next.js · Tailwind",
   },
 ];
