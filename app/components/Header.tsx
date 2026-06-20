@@ -1,7 +1,10 @@
+"use client";
+
 import { Linkedin, Mail } from "lucide-react";
 import { Button } from "@/app/components/ui/Button";
 import { Github, Twitter } from "@/app/icons";
 import { socialLinks } from "../constants/socials";
+import posthog from "posthog-js";
 
 function SocialIcon({ label }: { label: string }) {
   const className = "size-4 sm:hidden";
@@ -44,6 +47,12 @@ export function Header() {
                   }
                   aria-label={s.label}
                   title={s.label}
+                  onClick={() =>
+                    posthog.capture("social_link_clicked", {
+                      platform: s.label,
+                      href: s.href,
+                    })
+                  }
                 >
                   <SocialIcon label={s.label} />
                   <span className="hidden sm:inline">{s.label}</span>

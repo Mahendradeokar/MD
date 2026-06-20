@@ -1,4 +1,7 @@
+"use client";
+
 import { ExternalLink } from "lucide-react";
+import posthog from "posthog-js";
 import {
   Card,
   CardTitle,
@@ -69,6 +72,12 @@ export function Projects() {
                     rel="noopener noreferrer"
                     className="inline-flex min-w-0 items-center gap-1 break-words underline underline-offset-2 transition hover:text-primary"
                     aria-label={`${p.name} (opens in new tab)`}
+                    onClick={() =>
+                      posthog.capture("project_clicked", {
+                        project_name: p.name,
+                        project_url: p.href,
+                      })
+                    }
                   >
                     <span className="min-w-0">{p.name}</span>
                     <ExternalLink

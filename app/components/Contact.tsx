@@ -1,8 +1,11 @@
+"use client";
+
 import { Linkedin, Mail } from "lucide-react";
 import AnalogClock from "@/app/components/shared/analog-clock";
 import { Github, Twitter } from "@/app/icons";
 import { socialLinks } from "@/app/constants/socials";
 import { Button } from "./ui/Button";
+import posthog from "posthog-js";
 
 const contactLinks = socialLinks.filter((link) => link.label !== "GitHub");
 
@@ -37,6 +40,12 @@ export function Contact() {
                 rel={s.href.startsWith("/") ? undefined : "noopener noreferrer"}
                 aria-label={s.label}
                 title={s.label}
+                onClick={() =>
+                  posthog.capture("contact_link_clicked", {
+                    platform: s.label,
+                    href: s.href,
+                  })
+                }
               >
                 <SocialIcon label={s.label} />
                 <span className="hidden sm:inline">{s.label}</span>

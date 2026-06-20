@@ -1,5 +1,5 @@
-import { Button } from "./ui/Button";
 import { getBlogEntries } from "@/app/lib/blogs";
+import { TrackedBlogLink } from "./TrackedBlogLink";
 
 export function BlogList() {
   const sorted = getBlogEntries();
@@ -40,17 +40,14 @@ export function BlogList() {
           }
 
           return (
-            <Button
+            <TrackedBlogLink
               key={post.href}
-              variant="ghost"
-              size="sm"
-              asChild
+              href={post.href}
+              title={post.title}
+              status={post.status}
               className="h-auto min-h-8 w-full min-w-0 justify-start whitespace-normal rounded-sm px-0 py-0.5 text-left text-[clamp(0.75rem,2.8vw,0.9375rem)] leading-tight tracking-tight hover:bg-muted sm:-mx-3 sm:w-[calc(100%+1.5rem)] sm:px-3 sm:py-1 sm:text-[clamp(0.875rem,2.6vw,1rem)]"
-            >
-              <a href={post.href} className={rowClassName}>
-                {content}
-              </a>
-            </Button>
+              rowClassName={rowClassName}
+            />
           );
         })}
       </div>
